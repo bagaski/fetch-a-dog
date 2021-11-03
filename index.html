@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Random Dog API</title>
+  </head>
+  <body>
+<h1>A website to display random dogs from a dog api for no particular reason.</h1>
+<button type="button" onclick="getApi()" name="button">Random Dog</button>
+<div id="dog"></div>
+
+
+    <script type="text/javascript">
+      const api_url = 'https://dog.ceo/api/breeds/image/random'
+      let num = 0
+
+      const getApi = async () => {
+        const response = await fetch(api_url)
+        const data = await response.json()
+        const { message, status } = data
+
+        const img = document.createElement("img");
+        img.src = message;
+        const src = document.getElementById("dog");
+        src.appendChild(img);
+
+
+        const dogNum = document.createElement("p")
+        num++
+        dogNum.textContent = "Dog Number: " + num
+        src.appendChild(dogNum)
+
+      }
+
+    </script>
+  </body>
+</html>
